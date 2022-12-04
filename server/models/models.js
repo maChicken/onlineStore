@@ -2,7 +2,7 @@ const sequelize = require('../db')
 const {DataTypes} = require('sequelize')
 
 const User = sequelize.define('user', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     surname: {type: DataTypes.STRING},
     name: {type: DataTypes.STRING},
     patronymic: {type: DataTypes.STRING},
@@ -15,15 +15,15 @@ const User = sequelize.define('user', {
 })
 
 const Basket = sequelize.define('basket', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
 })
 
 const BasketItem = sequelize.define('basketitem', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
 })
 
 const Item = sequelize.define('item', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, unique: true, allowNull: false},
     img: {type: DataTypes.STRING, allowNull: false},
     description: {type: DataTypes.STRING},
@@ -32,11 +32,11 @@ const Item = sequelize.define('item', {
 })
 
 const RestItem = sequelize.define('restitem', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
 })
 
 const Rest = sequelize.define('rest', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     size: {type: DataTypes.STRING, allowNull: false},
     rest: {type: DataTypes.INTEGER, allowNull: false},
 })
