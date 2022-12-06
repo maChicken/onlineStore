@@ -20,11 +20,21 @@ class ItemController {
     }
 
     async getAll(req, res) {
+        let {limit, page} = req.query
+        page = page || 1
+        limit = limit || 12
+        let offset = page * limit - limit
 
+        const items = await Item.findAndCountAll({limit, offset})
+        return res.json(items)
     }
 
     async getOne(req, res) {
-
+        const {id} = req.params
+        const item = await Item.findOne(
+            {where: {id}}
+        )
+        return res.json(item)
     }
 }
 
