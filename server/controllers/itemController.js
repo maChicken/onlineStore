@@ -19,6 +19,14 @@ class ItemController {
         }
     }
 
+    async delete(req, res){
+        const {id} = req.params
+        const item = await Item.destroy(
+            {where: {id}}
+        )
+        return res.json('Успешно удалено')
+    }
+
     async getAll(req, res) {
         let {limit, page} = req.query
         page = page || 1

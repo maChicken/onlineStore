@@ -6,12 +6,12 @@ const User = sequelize.define('user', {
     surname: {type: DataTypes.STRING},
     name: {type: DataTypes.STRING},
     patronymic: {type: DataTypes.STRING},
-    mail: {type: DataTypes.STRING, unique: true},
-    phone: {type: DataTypes.INTEGER, unique: true},
+    mail: {type: DataTypes.STRING, unique: true, allowNull: false},
+    phone: {type: DataTypes.INTEGER, unique: true, allowNull: true},
     adress: {type: DataTypes.STRING},
     index: {type: DataTypes.INTEGER},
     role: {type: DataTypes.STRING, defaultValue: "USER"},
-    password: {type: DataTypes.STRING},
+    password: {type: DataTypes.STRING, allowNull: false},
 })
 
 const Basket = sequelize.define('basket', {
