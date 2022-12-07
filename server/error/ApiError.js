@@ -14,7 +14,7 @@ class ApiError extends Error{
     }
 
     static forBidden(message) {
-        return new ApiErros(403, message)
+        return new ApiError(403, message)
     }
 }
 

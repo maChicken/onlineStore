@@ -29,6 +29,7 @@ const Item = sequelize.define('item', {
     description: {type: DataTypes.STRING},
     composition: {type: DataTypes.STRING},
     price: {type: DataTypes.INTEGER, allowNull: false},
+    year: {type: DataTypes.INTEGER, allowNull: false},
 })
 
 const RestItem = sequelize.define('restitem', {
