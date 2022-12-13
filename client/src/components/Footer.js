@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { SHOP_ROUTE } from '../utils/consts'
+import { FAQ_ROUTE, SHOP_ROUTE } from '../utils/consts'
 import {observer} from 'mobx-react-lite'
 
 import imageInstagram from '../img/instagram.svg'
@@ -9,19 +9,23 @@ import imageTelegram from '../img/telegram.svg'
 
 const NavBar = observer(() => {
     return (
-        <div class='footer'>
-            <div class='conctacts'>
-                <a href='http://www.instagram.com' target="_blank">
+        <div className='footer'>
+            <div className='conctacts'>
+                <a href='http://www.instagram.com' target="_blank" rel="noreferrer">
                     <img src={imageInstagram}></img>
                 </a>
-                <a href='http://www.vk.com' target="_blank">
+                <a href='http://www.vk.com' target="_blank" rel="noreferrer">
                     <img src={imageVK}></img>
                 </a>
-                <a href='https://web.telegram.org/k/' target="_blank">
+                <a href='https://web.telegram.org/k/' target="_blank" rel="noreferrer">
                     <img src={imageTelegram}></img>
                 </a>
             </div>
-            <div class='faq'><NavLink to={SHOP_ROUTE}><div class='logo'>FAQ</div></NavLink></div>
+            <div className='faq'>
+                <NavLink to={FAQ_ROUTE}>
+                    <div className='logo'>FAQ</div>
+                </NavLink>
+            </div>
         </div>
     )
 })

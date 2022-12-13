@@ -4,7 +4,8 @@ import Auth from "./pages/Auth"
 import Basket from "./pages/Basket"
 import ItemPage from "./pages/ItemPage"
 import Shop from "./pages/Shop"
-import { ACCOUNT_ROUTE, ADMIN_ROUTE, BASKET_ROUTE, ITEM_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from "./utils/consts"
+import Faq from "./pages/Faq"
+import { ACCOUNT_ROUTE, ADMIN_ROUTE, BASKET_ROUTE, ITEM_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE, FAQ_ROUTE } from "./utils/consts"
 
 export const authRoutes = [
     {
@@ -37,5 +38,9 @@ export const publicRoutes = [
     {
         path: BASKET_ROUTE,
         Component: Basket
+    },
+    {
+        path: FAQ_ROUTE,
+        Component: Faq
     }
 ]

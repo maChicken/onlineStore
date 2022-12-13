@@ -6,8 +6,6 @@ import { LOGIN_ROUTE, SHOP_ROUTE } from '../utils/consts'
 
 const AppRouter = () => {
     const {user} = useContext(Context)
-
-    console.log(user)
     return (
         <Routes>
             {user.isAuth && authRoutes.map(({path, Component}) =>
@@ -16,7 +14,6 @@ const AppRouter = () => {
             {publicRoutes.map(({path, Component}) =>
                 <Route key={path} path={path} element={<Component/>} />
             )}
-            {/* <Route path='*' element={<Navigate to={SHOP_ROUTE}/>} /> */}
             <Route path='account/*' element={<Navigate to={LOGIN_ROUTE}/>} />
             <Route path='*' element={<Navigate to={SHOP_ROUTE}/>} />
         </Routes>
