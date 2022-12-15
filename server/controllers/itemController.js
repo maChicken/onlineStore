@@ -8,7 +8,7 @@ class ItemController {
         try{
             const {name, description, composition, price, year} = req.body
             const {img} = req.files
-            let fileName = uuid.v4() + '.jpg'
+            let fileName = uuid.v4() + '.png'
             img.mv(path.resolve(__dirname, '..', 'static', fileName))
 
             const item = await Item.create({name, description, composition, price, year, img: fileName})

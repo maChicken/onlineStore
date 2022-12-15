@@ -48,7 +48,7 @@ const ModalLog = ({active, setActive}) => {
                         </div>
                     </div>
                     }
-                    <button className="button button_modal" type="button">готово</button>
+                    <button className="button button-modal" type="button">готово</button>
                 </form>
             </div>
         </div>
