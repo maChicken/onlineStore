@@ -45,10 +45,10 @@ h1, h2, h3, h4, h5, h6, p {
     font-size: inherit;
 	font-weight: inherit;
 }
-
+/*
 ul, ul li {
 	list-style: none;
-}
+} */
 
 img {
 	vertical-align: top;
@@ -132,7 +132,7 @@ input::-webkit-inner-spin-button {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    width: 1200px;
     margin-top: 90px;
     margin-bottom: 90px;
     margin-left: auto;
@@ -176,7 +176,7 @@ input::-webkit-inner-spin-button {
 
 .footer{
     display: flex;
-    max-width: 1200px;
+    width: 1200px;
     margin-top: 45px;
     margin-bottom: 45px;
     margin-left: auto;
@@ -197,6 +197,17 @@ input::-webkit-inner-spin-button {
     width: 50%;
 }
 
+
+.footer-fix{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.footer-fix1{
+    flex: 1 1 auto;
+}
+
 /* POPUP */
 
 .modal{
@@ -209,6 +220,7 @@ input::-webkit-inner-spin-button {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: auto;
 }
 
 .modal__content{
@@ -366,6 +378,11 @@ input::-webkit-inner-spin-button {
     min-width: 369px;
 }
 
+.item__info{
+    max-width: 741px;
+    width: 38.5vw;
+}
+
 .item__title{
     display: flex;
     justify-content: space-between;
@@ -398,15 +415,22 @@ input::-webkit-inner-spin-button {
     margin-bottom: 45px;
 }
 
-.item__composition{
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    margin-bottom: 45px;
+.size{
+    border: 3px solid #000;
+    border-radius: 30px;
+    padding: 7px;
+    padding-left: 23px;
+    padding-right: 23px;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    color: #000;
+    margin-right: 22px;
 }
 
-.button-size{
-    margin-right: 22px;
+.size.active{
+    background-color: #000;
+    color: #FFF;
 }
 
 .button-item{
@@ -419,4 +443,99 @@ input::-webkit-inner-spin-button {
     display: flex;
     justify-content: space-around;
     padding-bottom: 90px;
+}
+
+.button-add{
+    margin-bottom: 22px
+}
+
+.size__input{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.input-size{
+    border-bottom: 1px solid #A2A2A2;
+    width: 70px;
+    margin-left: 0px;
+}
+
+/* FAQ */
+
+.faq__title{
+    text-align: center;
+    padding-bottom: 45px;
+}
+
+.faq__main{
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.main__element{
+    margin-bottom: 22px;;
+}
+
+.element__title{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.element__list{
+    list-style: disc;
+    list-style-position: inside;
+}
+
+.faq__buttons{
+    margin-top: 45px;;
+    display: flex;
+}
+
+.button-faq{
+    margin-right: 90px;
+}
+
+
+/* Account */
+
+.account{
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Basket */
+.basket{
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.basket__item{
+    display: flex;
+    margin-bottom: 25px;
+}
+
+.basket__img{
+    width: 41.44px;
+    height: 40.67px;
+}
+
+.info__control{
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.info__container{
+    display: flex;
+    align-items: center;
+}
+
+.info-el{
+    margin-right: 10px;
 }

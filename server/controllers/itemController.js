@@ -1,17 +1,28 @@
 const uuid = require('uuid')
 const path = require('path')
-const {Item} = require('../models/models')
+const {Item, ItemRest} = require('../models/models')
 const ApiError = require('../error/ApiError')
 
 class ItemController {
     async create(req, res, next) {
         try{
-            const {name, description, composition, price, year} = req.body
+            const {name, description, composition, price, year, size} = req.body
             const {img} = req.files
             let fileName = uuid.v4() + '.png'
             img.mv(path.resolve(__dirname, '..', 'static', fileName))
 
             const item = await Item.create({name, description, composition, price, year, img: fileName})
+
+            if (size) {
+                const size1 = JSON.parse(size)
+                size1.forEach(i =>
+                    ItemRest.create({
+                        size: i.size,
+                        rest: i.rest,
+                        itemId: item.id,
+                    })
+                )
+            }
 
             return res.json(item)
         } catch (e) {
@@ -30,7 +41,7 @@ class ItemController {
     async getAll(req, res) {
         let {limit, page} = req.query
         page = page || 1
-        limit = limit || 12
+        limit = limit || 1000
         let offset = page * limit - limit
 
         const items = await Item.findAndCountAll({limit, offset})
@@ -40,7 +51,10 @@ class ItemController {
     async getOne(req, res) {
         const {id} = req.params
         const item = await Item.findOne(
-            {where: {id}}
+            {
+                where: {id},
+                include: [{model: ItemRest, as: 'size'}]
+            },
         )
         return res.json(item)
     }

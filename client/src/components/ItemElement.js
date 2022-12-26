@@ -7,7 +7,7 @@ const ItemElement = ({item}) => {
     return (
         <div className="stuff" onClick={() => navigate(ITEM_ROUTE + "/" + item.id)}>
             <div className="stuff__img">
-                <img  className="img-stuff" src={item.img} alt="item"></img>
+                <img  className="img-stuff" src={process.env.REACT_APP_API_URL + item.img} alt="item"></img>
             </div>
             <div className="stuff__name">{item.name}</div>
             <div className='stuff__coast'>{item.price} ₽</div>

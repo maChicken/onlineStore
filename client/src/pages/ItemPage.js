@@ -1,24 +1,44 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { observer } from 'mobx-react-lite'
+import {useParams} from 'react-router-dom'
+import { fetchOneItem } from '../http/itemAPI'
+import { Context } from '../index'
+import { addToBasket } from '../http/basketAPI'
 
-const ItemPage = () => {
-    //const {item} = useContext(Context)
-    const item = {id: 5, name: 'First product', img: 'http://localhost:5000/0b30c8dc-f03a-46ff-b55f-b1f84fe625ab.jpg', description: 'Оверсайз футболка, выполнення из высококачественного хлопка, с большим принтом, который стыкуется на швах. Рисунок не ощущается на ткани и пропускает воздух, что позволяет комфортно ощущать себя в жаркую погоду. Рукава до локтя.', composition: 'lalala', price: 1000, year: 2022}
-    const rest = [
-        {id: 1, size: 'S', res: 2},
-        {id: 2, size: 'M', res: 5},
-        {id: 3, size: 'L', res: 3},
-        {id: 4, size: 'XL', res: 1}
-    ]
-    const allRest = rest.map( (elem) => elem.size)
-    let listRest = allRest.map((rest, index) =>
-    <button className="button button-size" key={index} >
-        {rest}
-    </button>
+const ItemPage = observer(() => {
+    const {user} = useContext(Context)
+    const [item, setItem] = useState({size: []})
+    const {id} = useParams()
+    useEffect( () => {
+        fetchOneItem(id).then(data => setItem(data))
+    })
+    // Выбор размера
+    const [size1, setSize] = useState('')
+    const allRest = item.size.map( (elem) => elem.rest === 0 ? elem = 0 : elem.size ).filter(Boolean)
+    let listRest = allRest.map((el, index) =>
+        <button type="button"
+            className={size1 === el ? "size active" : "size"} key={index} onClick={() => {
+                setSize(el)
+            }
+        }
+        >
+            {el}
+        </button>
     )
+
+    const addItem = () => {
+        const formData = new FormData()
+        formData.append('itemId', id)
+        formData.append('userId', user.user.id)
+        formData.append('size', size1)
+        formData.append('quantity', 1)
+        addToBasket(formData)
+    }
+
     return (
         <div className="item">
             <div className="item__img">
-                <img className="img-item" src={item.img} alt="item"></img>
+                <img className="img-item" src={process.env.REACT_APP_API_URL + item.img} alt="item"></img>
             </div>
             <div className="item__info">
                 <div className="item__title">
@@ -35,15 +55,17 @@ const ItemPage = () => {
                 <div className="item__composition">
                     {item.composition}
                 </div >
-                <div className="item__sizeselector">
+                <form className="item__sizeselector">
                     {listRest}
-                    <button className="button button-item">
+                    { (user._user.role) &&
+                    <button className="button button-item" type="button" onClick={addItem}>
                         в корзину
                     </button>
-                </div>
+                    }
+                </form>
             </div>
         </div>
     )
-}
+})
 
 export default ItemPage

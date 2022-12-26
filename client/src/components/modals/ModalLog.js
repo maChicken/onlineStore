@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import {login, registration} from '../../http/userAPI'
+import {Context} from '../../index'
 
 const ModalLog = ({active, setActive}) => {
     // Закрытие модального окна через Escape
@@ -7,8 +9,33 @@ const ModalLog = ({active, setActive}) => {
                 setActive(false)
             }
         })
-    // Опредение логина или регистрации
+    //
+    // Данные пользователя
+    const {user} = useContext(Context)
+    // Установка значения авторизация или регистрация (авторизация или нет)
     const [isLogin, setLogin] = useState(true)
+    // Данные из инпутов
+    const [mail, setMail] = useState('')
+    const [password, setPassword] = useState('')
+    // Функция, которая срабатывает после нажатия кнопки готово
+    const signIn = async () => {
+        try {
+            let user1
+            // Формирование запроса
+            if (isLogin) {
+                user1 = await login(mail, password)
+            } else {
+                user1 = await registration(mail, password)
+            }
+            // Сохранение данных пользователся в UserSroe
+            user.setUser(user1)
+            user.setIsAuth(true)
+            // Закрытие модального окан
+            setActive(false)
+        } catch(e) {
+            alert(e.response.user1.message)
+        }
+    }
     // Модальное окно
     return (
         <>
@@ -25,7 +52,7 @@ const ModalLog = ({active, setActive}) => {
                             Mail
                         </div>
                         <div className="string__input">
-                            <input className="input" required placeholder="Введите электронную почту" name="mail"></input>
+                            <input className="input" required placeholder="Введите электронную почту" name="mail" value={mail} onChange={e => setMail(e.target.value)}></input>
                         </div>
                     </div>
                     <div className="form__string">
@@ -33,7 +60,7 @@ const ModalLog = ({active, setActive}) => {
                             Пароль
                         </div>
                         <div className="string__input">
-                            <input className="input" required placeholder="Введите пароль" name="password"></input>
+                            <input className="input" required placeholder="Введите пароль" name="password" value={password} onChange={e => setPassword(e.target.value)} type="password"></input>
                         </div>
                     </div>
                     {isLogin ?
@@ -48,7 +75,7 @@ const ModalLog = ({active, setActive}) => {
                         </div>
                     </div>
                     }
-                    <button className="button button-modal" type="button">готово</button>
+                    <button className="button button-modal" type="button" onClick={signIn}>готово</button>
                 </form>
             </div>
         </div>

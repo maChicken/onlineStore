@@ -20,6 +20,8 @@ const Basket = sequelize.define('basket', {
 
 const BasketItem = sequelize.define('basketitem', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    size: {type: DataTypes.STRING, allowNull: false},
+    quantity: {type: DataTypes.INTEGER, allowNull: false},
 })
 
 const Item = sequelize.define('item', {
@@ -32,11 +34,7 @@ const Item = sequelize.define('item', {
     year: {type: DataTypes.INTEGER, allowNull: false},
 })
 
-const RestItem = sequelize.define('restitem', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-})
-
-const Rest = sequelize.define('rest', {
+const ItemRest = sequelize.define('itemrest', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     size: {type: DataTypes.STRING, allowNull: false},
     rest: {type: DataTypes.INTEGER, allowNull: false},
@@ -51,17 +49,13 @@ BasketItem.belongsTo(Basket)
 Item.hasMany(BasketItem)
 BasketItem.belongsTo(Item)
 
-Item.hasMany(RestItem)
-RestItem.belongsTo(Item)
-
-Rest.hasMany(RestItem)
-RestItem.belongsTo(Rest)
+Item.hasMany(ItemRest, {as: 'size'})
+ItemRest.belongsTo(Item)
 
 module.exports = {
     User,
     Basket,
     BasketItem,
     Item,
-    RestItem,
-    Rest
+    ItemRest
 }

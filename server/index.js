@@ -20,10 +20,11 @@ app.use('/api', router)
 //Обработка ошибок - последний middleware
 app.use(errorHandler)
 
+//Запуск сервера и подключение бд
 const start = async () => {
     try {
-        await sequelize.authenticate()
-        await sequelize.sync()
+        await sequelize.authenticate() // с попощью неё устанавливается подключение к бд
+        await sequelize.sync() // сверяет состояние бд со схемой данных models
         app.listen(PORT, () => console.log('Server started on port', PORT))
     } catch (e) {
         console.log(e)

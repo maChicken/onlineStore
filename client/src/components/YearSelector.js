@@ -9,7 +9,7 @@ const YearSelector = observer( () => {
     let allYearUniqe = allYear.filter((element, index) => allYear.indexOf(element) === index).sort((a, b) => a - b)
     // Создание объектов - полученные года, родитель которых - year__selector
     let listYears = allYearUniqe.map((year, index) =>
-    <button className={item.selectedYear.year === year ? "year active" : "year"} key={index} onClick={() => item.setSelectedYear({year}) }>
+    <button className={item.selectedYear.year === year ? "year active" : "year"} key={index} onClick={() => item.setSelectedYear({year})}>
         {year}
     </button>
     )

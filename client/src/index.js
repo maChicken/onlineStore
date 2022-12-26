@@ -1,6 +1,7 @@
 import React, { createContext } from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import BasketStore from './store/basketStore';
 import ItemStore from './store/ItemStore';
 import UserStore from './store/UserStore';
 
@@ -11,6 +12,7 @@ root.render(
     <Context.Provider value={{
         user: new UserStore(),
         item: new ItemStore(),
+        basket: new BasketStore()
     }}>
         <App />
     </Context.Provider>
