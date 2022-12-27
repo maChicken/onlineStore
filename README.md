@@ -1,7 +1,7 @@
 # onlineStore
 1. Запуск серверной части:
-cd server
+cd server,
 npm run dev
 2. Запуск клиентской:
-cd client
+cd client,
 npm start
