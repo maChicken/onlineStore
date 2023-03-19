@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import {login, registration} from '../../http/userAPI'
 import {Context} from '../../index'
+import {getBasket} from '../../http/basketAPI'
 
 const ModalLog = ({active, setActive}) => {
     // Закрытие модального окна через Escape
@@ -10,8 +11,9 @@ const ModalLog = ({active, setActive}) => {
             }
         })
     //
-    // Данные пользователя
+    // Данные пользователя и его корзины
     const {user} = useContext(Context)
+    const {basket} = useContext(Context)
     // Установка значения авторизация или регистрация (авторизация или нет)
     const [isLogin, setLogin] = useState(true)
     // Данные из инпутов
@@ -30,7 +32,8 @@ const ModalLog = ({active, setActive}) => {
             // Сохранение данных пользователся в UserSroe
             user.setUser(user1)
             user.setIsAuth(true)
-            // Закрытие модального окан
+            //getBasket(user1.id).then(data => basket.setBaskets(data))
+            // Закрытие модального окна
             setActive(false)
         } catch(e) {
             alert(e.response.user1.message)

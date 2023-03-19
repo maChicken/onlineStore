@@ -12,17 +12,17 @@ const User = sequelize.define('user', {
     index: {type: DataTypes.INTEGER},
     role: {type: DataTypes.STRING, defaultValue: "USER"},
     password: {type: DataTypes.STRING, allowNull: false},
-})
+}, { timestamps: false })
 
 const Basket = sequelize.define('basket', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-})
+}, { timestamps: false })
 
 const BasketItem = sequelize.define('basketitem', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     size: {type: DataTypes.STRING, allowNull: false},
     quantity: {type: DataTypes.INTEGER, allowNull: false},
-})
+}, { timestamps: false })
 
 const Item = sequelize.define('item', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
@@ -32,13 +32,13 @@ const Item = sequelize.define('item', {
     composition: {type: DataTypes.STRING},
     price: {type: DataTypes.INTEGER, allowNull: false},
     year: {type: DataTypes.INTEGER, allowNull: false},
-})
+}, { timestamps: false }, { timestamps: false })
 
 const ItemRest = sequelize.define('itemrest', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     size: {type: DataTypes.STRING, allowNull: false},
     rest: {type: DataTypes.INTEGER, allowNull: false},
-})
+}, { timestamps: false })
 
 User.hasOne(Basket)
 Basket.hasOne(User)

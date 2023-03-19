@@ -10,8 +10,8 @@ const ItemPage = observer(() => {
     const [item, setItem] = useState({size: []})
     const {id} = useParams()
     useEffect( () => {
-        fetchOneItem(id).then(data => setItem(data))
-    })
+        fetchOneItem(id).then(data => setItem(data)) // eslint-disable-next-line
+    }, [])
     // Выбор размера
     const [size1, setSize] = useState('')
     const allRest = item.size.map( (elem) => elem.rest === 0 ? elem = 0 : elem.size ).filter(Boolean)
@@ -27,11 +27,11 @@ const ItemPage = observer(() => {
     )
 
     const addItem = () => {
+        // Сохраняем на сервере
         const formData = new FormData()
         formData.append('itemId', id)
         formData.append('userId', user.user.id)
         formData.append('size', size1)
-        formData.append('quantity', 1)
         addToBasket(formData)
     }
 

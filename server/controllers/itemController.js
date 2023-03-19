@@ -24,39 +24,51 @@ class ItemController {
                 )
             }
 
-            return res.json(item)
+            return res.json('Успешно создано')
         } catch (e) {
             next(ApiError.badRequest(e.message))
         }
     }
 
-    async delete(req, res){
-        const {id} = req.params
-        const item = await Item.destroy(
-            {where: {id}}
-        )
-        return res.json('Успешно удалено')
+    async delete(req, res, next){
+        try{
+            const {id} = req.params
+            const item = await Item.destroy(
+                {where: {id}}
+            )
+            return res.json('Успешно удалено')
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
     }
 
-    async getAll(req, res) {
-        let {limit, page} = req.query
-        page = page || 1
-        limit = limit || 1000
-        let offset = page * limit - limit
+    async getAll(req, res, next) {
+        try{
+            let {limit, page} = req.query
+            page = page || 1
+            limit = limit || 1000
+            let offset = page * limit - limit
 
-        const items = await Item.findAndCountAll({limit, offset})
-        return res.json(items)
+            const items = await Item.findAndCountAll({limit, offset})
+            return res.json(items)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
     }
 
-    async getOne(req, res) {
-        const {id} = req.params
-        const item = await Item.findOne(
-            {
-                where: {id},
-                include: [{model: ItemRest, as: 'size'}]
-            },
-        )
-        return res.json(item)
+    async getOne(req, res, next) {
+        try{
+            const {id} = req.params
+            const item = await Item.findOne(
+                {
+                    where: {id},
+                    include: [{model: ItemRest, as: 'size'}]
+                },
+            )
+            return res.json(item)
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
     }
 }
 
